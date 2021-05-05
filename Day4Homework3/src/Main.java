@@ -13,7 +13,6 @@ public class Main {
 			
 		
 		// Gamer bölümü
-		Gamer gamer1 = new Gamer(1,14132752386L, "Galip", "Doðan", 1986);
 		GamerManager gamerManager=new GamerManager(new GamerCheckService() {
 			
 			@Override
@@ -21,8 +20,9 @@ public class Main {
 				// TODO Auto-generated method stub
 				return false;
 			}
-		} );
+		});
 		
+		Gamer gamer1 = new Gamer(1,14132752386L, "Galip", "Doðan", 1986);
 		gamerManager.add(gamer1);
 
 		// Game Bölümü

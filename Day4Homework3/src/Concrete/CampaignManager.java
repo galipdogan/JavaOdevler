@@ -14,6 +14,8 @@ public class CampaignManager implements CampaignService {
 
 	@Override
 	public void update(Campaign campaign) {
+		
+		
 		System.out.println("Kampanya Güncellendi " + campaign.getName());
 		
 	}

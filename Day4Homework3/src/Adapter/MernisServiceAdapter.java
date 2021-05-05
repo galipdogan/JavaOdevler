@@ -8,6 +8,7 @@ import Entities.Gamer;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoap;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
+
 public class MernisServiceAdapter implements GamerCheckService {
 
 	@Override
