@@ -15,14 +15,14 @@ public class Main {
 		customer.setId(1);
 		customer.setFirstName("Galip");
 		customer.setLastName("Doðan");
-		customer.setDateOfBirth(1905);
-		customer.setNationalityId(12345678912L);
+		customer.setDateOfBirth(1986);
+		customer.setNationalityId(14132752386L);
 		
 		BaseCustomerManager customerManager = new StarbucksCustomerManager(new CustomerCheckService() {
 			
 			@Override
 			public boolean checkIfRealPerson(Customer customer) {
-				// TODO Auto-generated method stub
+				
 				return false;
 			}
 		});
