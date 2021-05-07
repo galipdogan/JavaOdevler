@@ -11,4 +11,10 @@ public class UserServiceAdapter implements UserValidationService {
 		return false;
 	}
 
+	@Override
+	public boolean userExists(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
