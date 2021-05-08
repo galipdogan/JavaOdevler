@@ -68,5 +68,21 @@ public class InMemoryUserDao implements dataAccess.abstracts.UserDao {
 		}
 		return userToReturn;
 	}
+
+	@Override
+	public boolean isVerified(User user) {
+		User userToCheck = get(user.getId());
+        return userToCheck.isVerify() ?
+                true : false;
+	}
+
+	@Override
+	public User get(int id) {
+		 User userToReturn = this.users.stream()
+	                .filter((user) -> user.getId() == id)
+	                .findFirst()
+	                .orElse(null);
+	        return userToReturn;
+	}
    
 }

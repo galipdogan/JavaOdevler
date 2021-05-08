@@ -12,6 +12,10 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+<<<<<<< HEAD
+=======
+		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
+>>>>>>> branch 'master' of https://github.com/galipdogan/JavaOdevler.git
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>

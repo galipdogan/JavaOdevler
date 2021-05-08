@@ -1,39 +1,34 @@
 package business.concretes;
 
+
 import business.abstracts.UserService;
 import business.abstracts.UserValidationService;
-import core.abstracts.MailValidationService;
+import core.abstracts.LoginService;
+//import core.abstracts.MailValidationService;
+//import core.business.MailValidationManager;
 import dataAccess.abstracts.UserDao;
 import entities.business.User;
 
 public class UserManager implements UserService {
 
 	private UserDao userDao;
+	private LoginService loginService;
 	private UserValidationService userValidationService;
-	private MailValidationService mailValidationService;
-	private UserService userService;
-
-	public UserManager(UserDao userDao, UserValidationService userValidationService,
-			MailValidationService mailValidationService) {
+	//private MailValidationService mailValidationService;
+	public UserManager(UserDao userDao,UserValidationService userValidationService,LoginService loginService) {
+		super();
 		this.userDao = userDao;
-		this.userValidationService = userValidationService;
-		this.mailValidationService = mailValidationService;
+		this.userValidationService=userValidationService;
+		this.loginService= loginService;
+		//this.mailValidationService=mailValidationService;
 	}
+
 
 	@Override
 	public void add(User user) {
-		if (!userValidationService.isValid(user)) {
-			System.out.println("Lütfen bilgilerinizi kontrol ediniz");
-		} else if (user.getEmail() == null) {
-			System.out.println("Bu kullanýcý daha önce kayýtlýdýr");
-
-		} else if (userValidationService.userExists(user.getEmail())) {
-
-		} else {
-			userDao.add(user);
-			mailValidationService.sendMail();
-		}
-
+		if(userValidationService.isValid(user))
+		userDao.add(user);
+		//mailValidationService.sendMail();
 	}
 
 	@Override
@@ -48,15 +43,16 @@ public class UserManager implements UserService {
 
 	}
 
-	public void login(String email, String password) {
-
-	}
-
 	@Override
 	public User get(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public User getByMail(String mail) {
+		
+		return userDao.getByMail(mail);
+	}
 
 }

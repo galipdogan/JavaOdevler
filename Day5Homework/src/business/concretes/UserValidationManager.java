@@ -14,6 +14,33 @@ public class UserValidationManager implements business.abstracts.UserValidationS
 		this.userDao = userDao;
 	}
 
+	@Override
+	public boolean isValid(User user) {
+		if (!isValidEmail(user.getEmail())) {
+			System.out.println("Yanlýþ email formatý. lütfen kontrol edin.");
+			return false;
+
+		}else if (!isValidString(user.getFirstName())) {
+			System.out.println("Lütfen en az 2 karakter giriniz");
+			return false;
+
+		}else if (!isValidString(user.getLastName())) {
+			System.out.println("Lütfen en az 2 karakter giriniz");
+			return false;
+
+		}else if (!isValidPassword(user.getPassword())) {
+			System.out.println("Lütfen en az 6 karakter giriniz");
+			return false;
+
+		} else if(!userExists(user.getEmail())){
+			System.out.println("Bu mail adresi daha önce kayýtlýdýr");
+			return false;
+		}
+		{
+		return true;
+		}
+	}
+	
 	public boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
 				+ "A-Z]{2,7}$";
@@ -42,37 +69,13 @@ public class UserValidationManager implements business.abstracts.UserValidationS
 	}
 
 	@Override
-	public boolean isValid(User user) {
-		if (!isValidEmail(user.getEmail())) {
-			System.out.println("Yanlýþ email formatý. lütfen kontrol edin.");
-			return false;
-
-		}
-
-		if (!isValidString(user.getFirstName())) {
-			System.out.println("Lütfen en az 2 karakter giriniz");
-			return false;
-
-		}
-		if (!isValidString(user.getLastName())) {
-			System.out.println("Lütfen en az 2 karakter giriniz");
-			return false;
-
-		}
-		if (!isValidPassword(user.getPassword())) {
-			System.out.println("Lütfen en az 6 karakter giriniz");
-			return false;
-
-		}
-		return true;
-
-	}
-	
-	@Override
 	public boolean userExists(String email) {
-		
-		for()
-		
+		if (userDao.getByMail(email).equals(email)) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 }
