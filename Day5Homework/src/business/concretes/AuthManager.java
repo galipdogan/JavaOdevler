@@ -33,4 +33,16 @@ public class AuthManager implements AuthService {
 
 	}
 
+	@Override
+	public void loginWithGoogle(String email, String password) {
+		User getUser = userService.getByMail(email);
+		if (getUser == null) {
+			System.out.println("Sisteme kayýtlý deðilsiniz.");
+		} else if (getUser.getPassword() != password) {
+			System.out.println("Lütfen parolanýzý kontrol ediniz..");
+		} else {
+			System.out.println("Google ile login baþarýlý " + getUser.getFirstName() + " " + getUser.getLastName());
+		}
+	}
+
 }

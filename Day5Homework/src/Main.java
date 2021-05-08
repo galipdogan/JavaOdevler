@@ -25,10 +25,10 @@ public class Main {
 		AuthService authService=new AuthManager(new UserManager(new InMemoryUserDao(),new UserValidationManager(new InMemoryUserDao()),new GoogleAuthManagerAdapter()));
 		
 		
-		userService.add(user);
-		authService.register(user);
-		authService.login("galip@galip.com", "123456");
-		//authService.login(null, null);
+		//userService.add(user);
+		//authService.register(user);
+		//authService.login("galip@galip.com", "123456");
+		authService.loginWithGoogle("galip@galip.com", "123456");
 		
 	}
 }

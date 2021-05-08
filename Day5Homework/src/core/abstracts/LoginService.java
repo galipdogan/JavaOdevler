@@ -1,5 +1,5 @@
 package core.abstracts;
 
 public interface LoginService {
-	void login(String mail,String password);
+	void login(String email,String password);
 }
