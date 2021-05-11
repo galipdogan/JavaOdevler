@@ -50,9 +50,9 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public User getByMail(String mail) {
+	public User getByMail(String email) {
 		
-		return userDao.getByMail(mail);
+		return userDao.getByMail(email);
 	}
 
 }
