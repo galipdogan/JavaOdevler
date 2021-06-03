@@ -22,7 +22,7 @@ public class Main {
 			}
 		});
 		
-		Gamer gamer1 = new Gamer(1,14132752386L, "Galip", "Doðan", 1986);
+		Gamer gamer1 = new Gamer(1,144564752386L, "Galip", "Doðan", 1986);
 		gamerManager.add(gamer1);
 
 		// Game Bölümü

@@ -1,35 +1,46 @@
 package kodlamaio.hmrs.entities.concretes;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
 @Table(name="job_sekeers")
-public class JobSekeer {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper=false)
+
+public class JobSekeer extends User {
 	
-	@Id
-	@GeneratedValue
-	@Column(name="job_sekeer_id")
-	private int job_sekeer_id;
+	@NotNull
+	@Column(name="first_name" )
+	private String firstName;
 	
-	@Column(name="first_name")
-	private String first_name;
-	
+	@NotNull
 	@Column(name="last_name")
-	private String last_name;
+	private String lastName;
 	
-	@Column(name="nationality_id")
-	private long nationality_id;
+	@NotNull
+	@Column(name="nationality_id" , length = 11)
+	private String nationalityId;
 	
+	@NotNull
 	@Column(name="date_of_birth")
-	private Date date_of_birth;
+	private LocalDate dateOfBirth;
+	
+	@Column(name="is_active" )
+	private boolean isActive=false;
+	
+
 }

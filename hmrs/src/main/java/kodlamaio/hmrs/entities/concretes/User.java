@@ -3,27 +3,36 @@ package kodlamaio.hmrs.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="users")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
+	
 	@Id
-	@GeneratedValue
-	@Column(name="user_id")
-	private int user_id;
-	
-	@Column(name="user_name")
-	private String user_name;
-	
-	@Column(name="email")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private int userId;
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
+
+
 
 }

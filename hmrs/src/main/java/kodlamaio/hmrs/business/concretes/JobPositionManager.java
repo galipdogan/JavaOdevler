@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hmrs.business.abstracts.JobPositionService;
+import kodlamaio.hmrs.core.utilities.results.DataResult;
+import kodlamaio.hmrs.core.utilities.results.Result;
+import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hmrs.entities.concretes.JobPosition;
 
@@ -21,8 +24,25 @@ public class JobPositionManager implements JobPositionService {
 	}
 
 	@Override
-	public List<JobPosition> getAll() {
-		return this.jobPositionDao.findAll();
+	public DataResult<List<JobPosition>> getAll() {
+		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),"JobPosition listed");
+	}
+
+	@Override
+	public Result add(JobPosition jobPosition) {
+		return new SuccessDataResult<JobPosition>(this.jobPositionDao.save(jobPosition),"JobPosition added");
+	}
+
+	@Override
+	public Result update(JobPosition jobPosition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result delete(JobPosition jobPosition) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
