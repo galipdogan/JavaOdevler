@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hmrs.business.abstracts.EmployerService;
 import kodlamaio.hmrs.business.abstracts.JobSekeerService;
 import kodlamaio.hmrs.business.abstracts.UserService;
+import kodlamaio.hmrs.business.utilities.validation.employerValidation.EmployerValidationService;
+import kodlamaio.hmrs.business.utilities.validation.jobsekeerValidation.JobSekeerValidationService;
 import kodlamaio.hmrs.core.abstracts.AuthService;
 import kodlamaio.hmrs.core.abstracts.EmailSenderService;
 import kodlamaio.hmrs.core.abstracts.VerificationService;
@@ -19,8 +21,6 @@ import kodlamaio.hmrs.core.utilities.mernis.PersonCheckService;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessResult;
-import kodlamaio.hmrs.core.utilities.validation.EmployerValidate.EmployerValidationService;
-import kodlamaio.hmrs.core.utilities.validation.JobSekeerValidate.JobSekeerValidationService;
 import kodlamaio.hmrs.entities.concretes.Employer;
 import kodlamaio.hmrs.entities.concretes.JobSekeer;
 import kodlamaio.hmrs.entities.concretes.User;
@@ -110,7 +110,7 @@ public class AuthManager implements AuthService {
 	}
 
 	public boolean userExists(String email) {
-		if (userService.getByEmail(email).equals(email)) {
+		if (userService.findByEmail(email).equals(email)) {
 			return true;
 		} else {
 			return false;

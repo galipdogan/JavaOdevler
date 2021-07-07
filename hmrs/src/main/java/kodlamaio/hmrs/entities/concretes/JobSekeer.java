@@ -2,6 +2,7 @@ package kodlamaio.hmrs.entities.concretes;
 
 import java.time.LocalDate;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -41,6 +42,7 @@ public class JobSekeer extends User {
 	
 	@Column(name="is_active" )
 	private boolean isActive=false;
+
 	
 
 }

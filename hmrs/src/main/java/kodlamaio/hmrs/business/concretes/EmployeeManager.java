@@ -10,6 +10,7 @@ import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.core.utilities.results.SuccessResult;
+import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
 import kodlamaio.hmrs.dataAccess.abstracts.EmployeeDao;
 import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
 import kodlamaio.hmrs.entities.concretes.Employee;
@@ -19,12 +20,14 @@ public class EmployeeManager implements EmployeeService {
 	
 	private EmployeeDao employeeDao;
 	private UserDao userDao;
+	private UserValidationService userValidationService;
 
 	@Autowired
-	public EmployeeManager(EmployeeDao employeeDao,UserDao userDao) {
+	public EmployeeManager(EmployeeDao employeeDao,UserDao userDao,UserValidationService userValidationService) {
 		super();
 		this.employeeDao = employeeDao;
 		this.userDao=userDao;
+		this.userValidationService=userValidationService;
 	}
 
 	@Override
@@ -35,6 +38,7 @@ public class EmployeeManager implements EmployeeService {
 
 	@Override
 	public Result add(Employee employee) {
+		userValidationService.isValid(employee);
 		employeeDao.save(employee);
 		return new SuccessDataResult<Employee>(this.employeeDao.save(employee),"Employee added");
 	}

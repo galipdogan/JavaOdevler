@@ -5,67 +5,67 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import kodlamaio.hmrs.business.abstracts.EmployerService;
+import kodlamaio.hmrs.business.utilities.validation.employerValidation.EmployerValidationService;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
-import kodlamaio.hmrs.core.utilities.results.ErrorDataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
-import kodlamaio.hmrs.core.utilities.validation.EmployerValidate.EmployerValidationService;
-import kodlamaio.hmrs.core.utilities.validation.UserValidate.UserValidationService;
+import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
 import kodlamaio.hmrs.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
 import kodlamaio.hmrs.entities.concretes.Employer;
 
 @Service
-public class EmployerManager implements EmployerService{
-	
+public class EmployerManager implements EmployerService {
+
 	private EmployerValidationService employerValidationService;
 	private UserValidationService userValidationService;
 	private EmployerDao employerDao;
 	private UserDao userDao;
-	
+
 	@Autowired
-	public EmployerManager(EmployerDao employerDao,UserDao userDao,EmployerValidationService employerValidationService) {
+	public EmployerManager(EmployerDao employerDao, UserDao userDao,
+			EmployerValidationService employerValidationService) {
 		super();
 		this.employerDao = employerDao;
-		this.userDao=userDao;
-		this.employerValidationService=employerValidationService;
+		this.userDao = userDao;
+		this.employerValidationService = employerValidationService;
 	}
-
 
 	@Override
 	public DataResult<List<Employer>> getAll() {
 
-		
-		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(),"Employer listed");
+		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Employer listed");
 	}
 
 	@Override
 	public Result add(Employer employer) {
-		
-		if(!checkMailAndDomain(employer)) {
+
+		if (!checkMailAndDomain(employer)) {
 			return new ErrorResult("please check mail and domain");
+
+		} if (!this.userValidationService.isValid(employer).isSuccess()){
+			return new ErrorResult("please check mail");
 		}
-			//this.employerDao.save(employer);
-			return new SuccessDataResult<Employer>(this.employerDao.save(employer),"Employer added");
-	
+		// this.employerDao.save(employer);
+		return new SuccessDataResult<Employer>(this.employerDao.save(employer), "Employer added");
+
 	}
 
 	@Override
 	public Result update(Employer employer) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Result delete(Employer employer) {
-		
+
 		return null;
-			//new SuccessDataResult<Employer>(this.employerDao.delete(employer), "Employer deleted");
+		// new SuccessDataResult<Employer>(this.employerDao.delete(employer), "Employer
+		// deleted");
 	}
-	
+
 //	public static boolean checkMailAndDomain(Employer employer) {
 //
 //        String[] dizi = employer.getEmail().split("@");
@@ -79,7 +79,7 @@ public class EmployerManager implements EmployerService{
 //        }
 //        return false;
 //    }
-	
+
 	public boolean checkMailAndDomain(Employer employer) {
 
 		var email = employer.getEmail();

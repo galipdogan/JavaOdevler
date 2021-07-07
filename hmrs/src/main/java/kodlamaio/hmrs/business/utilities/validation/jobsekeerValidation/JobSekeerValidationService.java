@@ -1,4 +1,4 @@
-package kodlamaio.hmrs.core.utilities.validation.JobSekeerValidate;
+package kodlamaio.hmrs.business.utilities.validation.jobsekeerValidation;
 
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.entities.concretes.JobSekeer;

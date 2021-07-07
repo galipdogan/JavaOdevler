@@ -1,4 +1,4 @@
-package kodlamaio.hmrs.core.utilities.validation.JobSekeerValidate;
+package kodlamaio.hmrs.business.utilities.validation.jobsekeerValidation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,7 @@ public class JobSekeerValidationManager implements JobSekeerValidationService {
 	public Result isValid(JobSekeer jobSekeer) {
 		
 		if (findByNationalityId(jobSekeer)) {
+			System.out.println("This identity already has");
 			return new ErrorDataResult<JobSekeer>("This identity already has");
 		}else if(!firstNameChecker(jobSekeer)) {
 			return new ErrorDataResult<JobSekeer>("First Name cannot be null");
@@ -36,11 +37,8 @@ public class JobSekeerValidationManager implements JobSekeerValidationService {
 			return new ErrorDataResult<JobSekeer>("Last Name cannot be null");
 		}else if(!birthDateChecker(jobSekeer)) {
 			return new ErrorDataResult<JobSekeer>("Last Name cannot be null");
-		}if(!emailNullChecker(jobSekeer)) {
-			return new ErrorDataResult<JobSekeer>("Email cannot be null");
-		}else if(!passwordNullChecker(jobSekeer)) {
-			return new ErrorDataResult<JobSekeer>("Password cannot be null");
-		}		
+		}
+			
 		return new SuccessResult();
 	}
 	
@@ -73,17 +71,4 @@ public class JobSekeerValidationManager implements JobSekeerValidationService {
 		return true;
 	}
 	
-	private boolean emailNullChecker(JobSekeer jobSekeer) {
-		if(jobSekeer.getEmail().isBlank() || jobSekeer.getEmail().equals(null)) {
-			return false;
-		}
-		return true;
-	}
-	
-	private boolean passwordNullChecker(JobSekeer jobSekeer) {
-		if(jobSekeer.getPassword().isBlank() || jobSekeer.getPassword().equals(null)) {
-			return false;
-		}
-		return true;
-	}
 }

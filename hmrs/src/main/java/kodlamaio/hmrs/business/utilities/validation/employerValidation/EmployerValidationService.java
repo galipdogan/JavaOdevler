@@ -1,4 +1,4 @@
-package kodlamaio.hmrs.core.utilities.validation.EmployerValidate;
+package kodlamaio.hmrs.business.utilities.validation.employerValidation;
 
 import kodlamaio.hmrs.entities.concretes.Employer;
 

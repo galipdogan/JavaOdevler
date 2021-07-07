@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hmrs.business.abstracts.JobPositionService;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
+import kodlamaio.hmrs.core.utilities.results.ErrorDataResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.dataAccess.abstracts.JobPositionDao;
@@ -30,7 +31,10 @@ public class JobPositionManager implements JobPositionService {
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		return new SuccessDataResult<JobPosition>(this.jobPositionDao.save(jobPosition),"JobPosition added");
+		if(jobPositionDao.findAll()!=null) {
+			return new SuccessDataResult<JobPosition>(this.jobPositionDao.save(jobPosition),"JobPosition added");
+		}
+		return new ErrorDataResult<JobPosition>("This position already has");
 	}
 
 	@Override
@@ -44,5 +48,8 @@ public class JobPositionManager implements JobPositionService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
 
 }

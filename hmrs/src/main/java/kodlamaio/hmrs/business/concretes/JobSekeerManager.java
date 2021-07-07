@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hmrs.business.abstracts.JobSekeerService;
 import kodlamaio.hmrs.business.abstracts.UserService;
+import kodlamaio.hmrs.business.utilities.validation.jobsekeerValidation.JobSekeerValidationService;
 import kodlamaio.hmrs.core.abstracts.EmailSenderService;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorDataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
-import kodlamaio.hmrs.core.utilities.validation.JobSekeerValidate.JobSekeerValidationService;
-import kodlamaio.hmrs.core.utilities.validation.UserValidate.UserValidationService;
+import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
 import kodlamaio.hmrs.dataAccess.abstracts.JobSekeerDao;
 import kodlamaio.hmrs.entities.concretes.JobSekeer;
 
@@ -29,15 +29,15 @@ public class JobSekeerManager implements JobSekeerService {
 	private EmailSenderService emailSenderService;
 
 	@Autowired
-	public JobSekeerManager(JobSekeerDao jobSekeerDao, JobSekeerValidationService jobSekeerValidationService,UserService userService,
-			UserValidationService userValidationService,
+	public JobSekeerManager(JobSekeerDao jobSekeerDao, JobSekeerValidationService jobSekeerValidationService,
+			UserService userService, UserValidationService userValidationService,
 			EmailSenderService emailSenderService) {
 		super();
 		this.jobSekeerDao = jobSekeerDao;
 		this.jobSekeerValidationService = jobSekeerValidationService;
 		this.userValidationService = userValidationService;
-		this.userService=userService;
-		this.emailSenderService=emailSenderService;
+		this.userService = userService;
+		this.emailSenderService = emailSenderService;
 	}
 
 	@Override
@@ -47,31 +47,38 @@ public class JobSekeerManager implements JobSekeerService {
 
 	@Override
 	public Result add(JobSekeer jobSekeer) {
-		if (this.jobSekeerDao.findByNationalityId(jobSekeer.getNationalityId()).stream().count()!=0) {
-			return new ErrorResult("This identity already have");
-		
-		}else if(jobSekeer.getFirstName().isBlank() || jobSekeer.getFirstName().equals(null)) {
-			return new ErrorResult("Check the firstname is not to be null");
-		
-		}else if(jobSekeer.getLastName().isBlank() || jobSekeer.getLastName().equals(null)) {
-			return new ErrorResult("Check the lastname is not to be null");
-		
-		}else if(jobSekeer.getDateOfBirth().equals(null)) {
-			return new ErrorResult("Check the birthday is not to be null");
-			
-		}else if(jobSekeer.getEmail().isBlank() || jobSekeer.getEmail().equals(null)) {
-			return new ErrorResult("Check the email is not to be null");
-			
-		}else if(jobSekeer.getPassword().isBlank() || jobSekeer.getPassword().equals(null)) {
-			return new ErrorResult("Check the password is not to be null");
-		
-		}else if(this.jobSekeerDao.findByEmail(jobSekeer.getEmail()).stream().count()!=0) {
-			return new ErrorResult("The email is already have");
+//		if (this.jobSekeerDao.findByNationalityId(jobSekeer.getNationalityId()).stream().count()!=0) {
+//			return new ErrorResult("This identity already have");
+//		
+//		}else if(jobSekeer.getFirstName().isBlank() || jobSekeer.getFirstName().equals(null)) {
+//			return new ErrorResult("Check the firstname is not to be null");
+//		
+//		}else if(jobSekeer.getLastName().isBlank() || jobSekeer.getLastName().equals(null)) {
+//			return new ErrorResult("Check the lastname is not to be null");
+//		
+//		}else if(jobSekeer.getDateOfBirth().equals(null)) {
+//			return new ErrorResult("Check the birthday is not to be null");
+//			
+//		}else if(jobSekeer.getEmail().isBlank() || jobSekeer.getEmail().equals(null)) {
+//			return new ErrorResult("Check the email is not to be null");
+//			
+//		}else if(jobSekeer.getPassword().isBlank() || jobSekeer.getPassword().equals(null)) {
+//			return new ErrorResult("Check the password is not to be null");
+//		
+//		}else if(this.jobSekeerDao.findByEmail(jobSekeer.getEmail()).stream().count()!=0) {
+//			return new ErrorResult("The email is already have");
+//		}
+		if (!jobSekeerValidationService.isValid(jobSekeer).isSuccess()) {
+			return new ErrorResult("Not a valid jobsekeer");
 		}
-		
+		if (!userValidationService.isValid(jobSekeer).isSuccess()) {
+			return new ErrorResult("Not a valid user");
+		}
+
 		this.jobSekeerDao.save(jobSekeer);
 		String token = UUID.randomUUID().toString();
-		emailSenderService.send(jobSekeer.getEmail(), token);	
+		emailSenderService.send(jobSekeer.getEmail(), token);
+		System.out.println(jobSekeer.getEmail() + token);
 		return new SuccessDataResult<JobSekeer>(jobSekeer, "JobSekeer added");
 	}
 
@@ -92,7 +99,7 @@ public class JobSekeerManager implements JobSekeerService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 //	public boolean findByNationalityId(JobSekeer jobSekeer) {
 //		if (this.jobSekeerDao.findByNationalityId(jobSekeer.getNationalityId()).stream().count()!=0){					
 //			return true;

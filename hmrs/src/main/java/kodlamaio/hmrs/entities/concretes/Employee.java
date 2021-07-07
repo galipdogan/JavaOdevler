@@ -1,6 +1,5 @@
 package kodlamaio.hmrs.entities.concretes;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -24,6 +23,7 @@ public class Employee extends User{
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="is_active")
-	private boolean isActive=false;
+	@Column(name="is_active" )
+	private boolean isActive;
+	
 }

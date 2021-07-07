@@ -1,4 +1,4 @@
-package kodlamaio.hmrs.core.utilities.validation.EmployerValidate;
+package kodlamaio.hmrs.business.utilities.validation.employerValidation;
 
 import org.springframework.stereotype.Service;
 
@@ -26,5 +26,6 @@ public class EmployerValidationManager implements EmployerValidationService {
 		}
 		return false;
 	}
+	
 
 }
