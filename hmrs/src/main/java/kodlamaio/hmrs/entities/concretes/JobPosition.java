@@ -1,5 +1,6 @@
 package kodlamaio.hmrs.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -19,28 +20,28 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name="job_positions")
+@Table(name = "job_positions")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobPosition"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "JobPosition" })
 public class JobPosition {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="job_position_id")
-	private int job_position_id;
-	
-	@Column(name="job_position_name")
+	@Column(name = "id")
+	private int id;
+
+	@Column(name = "job_position_name")
 	private String jobPositionName;
-	
-//	@Column(name= "created_at", columnDefinition = "Date default CURRENT_DATE")
-//	private LocalDate createdDate = LocalDate.now();
-	
-	@Column(name= "is_active")
+
+	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
+	private LocalDate createdDate = LocalDate.now();
+
+	@Column(name = "is_active")
 	private boolean isActive;
 	
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "jobPosition")
-//    private List<JobAdvertisement> jobAdvertisement;
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobPosition")
+    private List<JobAdvertisement> jobAdvertisements;
+
 }

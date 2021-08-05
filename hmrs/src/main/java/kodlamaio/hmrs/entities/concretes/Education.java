@@ -1,6 +1,6 @@
 package kodlamaio.hmrs.entities.concretes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,42 +8,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "education")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "verification")
-public class Verification {
-
+public class Education {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "token", nullable = false)
-	private String token;
-
-	@Column(name = "created_at")
-	private LocalDateTime createdAt;
-
-	@Column(name = "expired")
-	private LocalDateTime expiresAt;
-
-	@Column(name = "confirmed_at")
-	private LocalDateTime confirmedAt;
+	@Column(name="name")
+	private String name;
 	
-	@ManyToOne()
-	@JoinColumn(name = "user_id")
-	private User user;
-
+	@JsonIgnore
+	@OneToMany(mappedBy = "education")
+	private List<EducationDepartment> departments;
+	
+	
 }

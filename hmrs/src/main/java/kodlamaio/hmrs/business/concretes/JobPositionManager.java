@@ -48,6 +48,18 @@ public class JobPositionManager implements JobPositionService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public DataResult<List<JobPosition>> getAllActive() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<JobPosition>> getByPositionName(String jobPositionName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

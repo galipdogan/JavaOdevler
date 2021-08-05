@@ -1,5 +1,9 @@
 package kodlamaio.hmrs.core.utilities.results;
 
+import java.util.List;
+
+import kodlamaio.hmrs.entities.concretes.Language;
+
 public class DataResult<T> extends Result{
 
 	private T data;
@@ -15,6 +19,7 @@ public class DataResult<T> extends Result{
 		this.data=data;
 	}
 	
+
 	public T getData() {
 		return this.data;
 	}

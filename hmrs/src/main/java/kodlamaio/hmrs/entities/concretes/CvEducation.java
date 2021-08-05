@@ -1,7 +1,6 @@
 package kodlamaio.hmrs.entities.concretes;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,40 +9,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Table(name = "cvEducation")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "verification")
-public class Verification {
-
+public class CvEducation {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "token", nullable = false)
-	private String token;
-
-	@Column(name = "created_at")
-	private LocalDateTime createdAt;
-
-	@Column(name = "expired")
-	private LocalDateTime expiresAt;
-
-	@Column(name = "confirmed_at")
-	private LocalDateTime confirmedAt;
+	@ManyToOne()
+	@JoinColumn(name = "cv_id")
+	private CV cv;
 	
 	@ManyToOne()
-	@JoinColumn(name = "user_id")
-	private User user;
-
+	@JoinColumn(name = "education_id")
+	private Education education;
+	
+	@Column (name="start_date")
+	private LocalDate startDate;
+	
+	@Column (name="graduated_date")
+	private LocalDate graduatedDate;
+	
 }

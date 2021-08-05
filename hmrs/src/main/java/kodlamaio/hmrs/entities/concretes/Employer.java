@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name="employers")
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
 public class Employer extends User{
 	
 	@Column(name="company_name")
@@ -37,9 +36,9 @@ public class Employer extends User{
 	@Column(name="is_active" ,columnDefinition = "boolean default false")
 	private boolean isActive=false;
 	
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "employer")
-//  private List<JobAdvertisement> jobAdvertisements;
+	@JsonIgnore
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvertisement> jobAdvertisements;
 	
 
 }

@@ -1,37 +1,36 @@
 package kodlamaio.hmrs.entities.concretes;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "users")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-	
+@Table(name = "CvLanguage")
+public class CvLanguage {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	private Long id;
 
-	@Column(name = "email")
-	private String email;
+	@ManyToOne()
+	@JoinColumn(name = "cv_id")
+	private CV cv;
 
-	@Column(name = "password")
-	private String password;
-	
+	@ManyToOne()
+	@JoinColumn(name = "language_id")
+	private  Language language;
+
+	int grade;
 
 }

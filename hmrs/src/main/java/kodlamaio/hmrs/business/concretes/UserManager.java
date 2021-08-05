@@ -12,7 +12,6 @@ import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
-import kodlamaio.hmrs.core.utilities.results.SuccessResult;
 import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
 import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
 import kodlamaio.hmrs.entities.concretes.User;
@@ -50,11 +49,12 @@ public class UserManager implements UserService {
 //		}else if(this.userDao.findByEmail(user.getEmail())) {
 //			return new ErrorResult("The Mail adress already have");
 		}
+		
 		String token = UUID.randomUUID().toString();
 		emailSenderService.send(user.getEmail(), token);
 		System.out.println(user.getEmail() + token);
 		this.userDao.save(user);
-		return new SuccessResult("User added");
+		return new SuccessDataResult<User>("User added"+token);
 		
 
 	}

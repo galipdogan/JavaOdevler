@@ -29,15 +29,17 @@ public class UserValidationManager implements UserValidationService{
 			//return false;
 			return new ErrorDataResult<User>("Wrong mail format. Please check mail.");
 		
-		}else if(this.userDao.findByEmail(user.getEmail())!=null){
+		}if(this.userDao.findByEmail(user.getEmail())!=null){
 			System.out.println("This mail adress already taken");
 			//return false;
 			return  new ErrorDataResult<User>("This mail adress already has been taken");			
 		
-		}else if(!isValidPassword(user.getPassword())) {
+		}if(!isValidPassword(user.getPassword())) {
 			System.out.println("Password is null or not min 6 character.");
 			return new ErrorDataResult<User>("Password is null or not min 6 character.");
 		}
+		
+		
 		return new SuccessDataResult<User>();
 	}
 	

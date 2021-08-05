@@ -35,20 +35,18 @@ public class EmployerManager implements EmployerService {
 
 	@Override
 	public DataResult<List<Employer>> getAll() {
-
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(), "Employer listed");
 	}
 
 	@Override
 	public Result add(Employer employer) {
-
 		if (!checkMailAndDomain(employer)) {
 			return new ErrorResult("please check mail and domain");
-
-		} if (!this.userValidationService.isValid(employer).isSuccess()){
-			return new ErrorResult("please check mail");
+			
+		} if (!this.userValidationService.isValid(employer).isSuccess()) {
+			return new ErrorResult();
 		}
-		// this.employerDao.save(employer);
+
 		return new SuccessDataResult<Employer>(this.employerDao.save(employer), "Employer added");
 
 	}

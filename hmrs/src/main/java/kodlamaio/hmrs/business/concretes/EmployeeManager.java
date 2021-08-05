@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hmrs.business.abstracts.EmployeeService;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
+import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.core.utilities.results.SuccessResult;
@@ -38,8 +39,9 @@ public class EmployeeManager implements EmployeeService {
 
 	@Override
 	public Result add(Employee employee) {
-		userValidationService.isValid(employee);
-		employeeDao.save(employee);
+		if (!this.userValidationService.isValid(employee).isSuccess()) {
+			return new ErrorResult();
+		}
 		return new SuccessDataResult<Employee>(this.employeeDao.save(employee),"Employee added");
 	}
 

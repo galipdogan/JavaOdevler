@@ -11,7 +11,6 @@ import kodlamaio.hmrs.business.abstracts.UserService;
 import kodlamaio.hmrs.business.utilities.validation.jobsekeerValidation.JobSekeerValidationService;
 import kodlamaio.hmrs.core.abstracts.EmailSenderService;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
-import kodlamaio.hmrs.core.utilities.results.ErrorDataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;

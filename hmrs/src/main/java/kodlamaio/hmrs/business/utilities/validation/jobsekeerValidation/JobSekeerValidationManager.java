@@ -37,8 +37,8 @@ public class JobSekeerValidationManager implements JobSekeerValidationService {
 			return new ErrorDataResult<JobSekeer>("Last Name cannot be null");
 		}else if(!birthDateChecker(jobSekeer)) {
 			return new ErrorDataResult<JobSekeer>("Last Name cannot be null");
-		}
-			
+		}else if (!personCheckService.checkIfRealPerson(jobSekeer))
+			return new ErrorDataResult<JobSekeer>("Please chechk nationlity Id");
 		return new SuccessResult();
 	}
 	

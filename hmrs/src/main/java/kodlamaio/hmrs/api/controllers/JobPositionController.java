@@ -31,6 +31,11 @@ public class JobPositionController {
 		return this.jobPositionService.getAll();
 	}
 	
+//	@GetMapping("/getByJobPositionName")
+//	public DataResult<List<JobPosition>> getByJobPositionName(){
+//		return this.jobPositionService.getByJobPositionName(String jobPositionName);
+//	}
+	
 	@PostMapping("/add")
 	public Result add(@RequestBody JobPosition jobPosition) {
 		return this.jobPositionService.add(jobPosition);
