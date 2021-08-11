@@ -13,6 +13,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "cv")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler","languages,skills,educations"})
 public class CV {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,14 +50,14 @@ public class CV {
 
 	@Column(name = "image_url")
 	private String imageUrl = "https://res.cloudinary.com/glpdgn/image/upload/v1628163454/wd5hebfqqzwp7ehs4hiy.png";
+
+	@OneToMany(mappedBy = "cv")
+	private List<CvLanguage> cvLanguages;
 	
 	@OneToMany(mappedBy = "cv")
-	private List<CvLanguage> languages;
+	private List<CvSkill> cvSkills;
 	
 	@OneToMany(mappedBy = "cv")
-	private List<CvSkill> skills;
-	
-	@OneToMany(mappedBy = "cv")
-	private List<CvEducation> educations;
+	private List<CvEducation> cvEducations;
 	
 }

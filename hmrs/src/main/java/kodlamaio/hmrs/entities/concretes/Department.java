@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,9 +22,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "department")
+@Table(name = "departments")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","educations"})
 public class Department {
 
 

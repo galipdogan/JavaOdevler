@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "cvEducation")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
 public class CvEducation {
 	
 	@Id
@@ -35,9 +38,9 @@ public class CvEducation {
 	private Education education;
 	
 	@Column (name="start_date")
-	private LocalDate startDate;
+	private LocalDate startDate =LocalDate.now();
 	
 	@Column (name="graduated_date")
-	private LocalDate graduatedDate;
+	private LocalDate graduatedDate=LocalDate.now();
 	
 }

@@ -8,7 +8,7 @@ import kodlamaio.hmrs.entities.concretes.CV;
 
 public interface CvDao extends JpaRepository<CV, Integer> {
 	List<CV> findById(int id);
-	
 	boolean existsById(int id);
+	//CV findBySkillId (int id);
 
 }

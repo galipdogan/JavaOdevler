@@ -27,8 +27,8 @@ public class HmrsApplication {
 		"api_secret", "6BnZ9sJLf6Ew6aXmpa_DtCPSy00",
 		"secure", true));
 		
-		File file = new File("my_image.jpg");
-		Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+//		File file = new File("my_image.jpg");
+//		Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
 		
 		//System.out.println(uploadResult.values());
 	}
