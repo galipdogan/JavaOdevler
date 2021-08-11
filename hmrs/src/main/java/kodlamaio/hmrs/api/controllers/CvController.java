@@ -16,7 +16,7 @@ import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.entities.concretes.CV;
 
 @RestController
-@RequestMapping("/api/cvs")
+@RequestMapping(value="/api/cvs")
 public class CvController {
 
 	private CvService cvService;

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hmrs.business.abstracts.EmployerService;
 import kodlamaio.hmrs.business.utilities.validation.employerValidation.EmployerValidationService;
+import kodlamaio.hmrs.core.dataAccess.UserDao;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
 import kodlamaio.hmrs.dataAccess.abstracts.EmployerDao;
-import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
 import kodlamaio.hmrs.entities.concretes.Employer;
 
 @Service

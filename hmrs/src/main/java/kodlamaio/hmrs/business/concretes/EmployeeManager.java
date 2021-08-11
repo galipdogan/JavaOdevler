@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hmrs.business.abstracts.EmployeeService;
+import kodlamaio.hmrs.core.dataAccess.UserDao;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
@@ -13,7 +14,6 @@ import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.core.utilities.results.SuccessResult;
 import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
 import kodlamaio.hmrs.dataAccess.abstracts.EmployeeDao;
-import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
 import kodlamaio.hmrs.entities.concretes.Employee;
 
 @Service

@@ -16,7 +16,7 @@ import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.entities.concretes.Education;
 
 @RestController
-@RequestMapping("/api/educations")
+@RequestMapping(value="/api/educations")
 public class EducationController {
 
 	private EducationService educationService;

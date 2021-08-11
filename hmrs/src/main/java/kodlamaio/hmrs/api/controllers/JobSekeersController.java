@@ -15,7 +15,7 @@ import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.entities.concretes.JobSekeer;
 
 @RestController
-@RequestMapping("api/jobsekeers")
+@RequestMapping(value="api/jobsekeers")
 public class JobSekeersController {
 
 	private JobSekeerService jobSekeerService;

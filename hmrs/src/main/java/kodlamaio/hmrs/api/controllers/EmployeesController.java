@@ -16,7 +16,7 @@ import kodlamaio.hmrs.entities.concretes.Employee;
 
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping(value="/api/employees")
 public class EmployeesController{
 
 	private EmployeeService employeeService;

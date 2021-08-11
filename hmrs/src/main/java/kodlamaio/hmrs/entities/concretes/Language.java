@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "languages")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cvlanguages"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "cvlanguages" })
 public class Language {
 
 	@Id
@@ -31,6 +33,8 @@ public class Language {
 	private int id;
 
 	@Column(name = "name")
+	@NotNull
+	@NotBlank
 	private String langName;
 
 	@JsonIgnore

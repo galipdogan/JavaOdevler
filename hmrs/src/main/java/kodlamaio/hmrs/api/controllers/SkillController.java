@@ -15,7 +15,7 @@ import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.entities.concretes.Skill;
 @RestController
-@RequestMapping("/skills")
+@RequestMapping(value="/api/skills")
 public class SkillController {
 
 	private SkillService skillService;

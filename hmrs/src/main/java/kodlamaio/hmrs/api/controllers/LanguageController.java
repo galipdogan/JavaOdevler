@@ -16,7 +16,7 @@ import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.entities.concretes.Language;
 
 @RestController
-@RequestMapping("/api/languages")
+@RequestMapping(value="/api/languages")
 public class LanguageController {
 
 	private LanguageService languageService;

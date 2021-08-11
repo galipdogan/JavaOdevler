@@ -5,11 +5,11 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kodlamaio.hmrs.core.dataAccess.UserDao;
+import kodlamaio.hmrs.core.entities.User;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorDataResult;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
-import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
-import kodlamaio.hmrs.entities.concretes.User;
 
 @Service
 public class UserValidationManager implements UserValidationService{

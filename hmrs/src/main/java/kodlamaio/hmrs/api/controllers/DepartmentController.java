@@ -16,7 +16,7 @@ import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
 import kodlamaio.hmrs.entities.concretes.Department;
 
 @RestController
-@RequestMapping("/api/departments")
+@RequestMapping(value="/api/departments")
 public class DepartmentController {
 
 	private DepartmentService departmentService;

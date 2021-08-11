@@ -17,13 +17,13 @@ import kodlamaio.hmrs.business.utilities.validation.jobsekeerValidation.JobSekee
 import kodlamaio.hmrs.core.abstracts.AuthService;
 import kodlamaio.hmrs.core.abstracts.EmailSenderService;
 import kodlamaio.hmrs.core.abstracts.VerificationService;
+import kodlamaio.hmrs.core.entities.User;
 import kodlamaio.hmrs.core.utilities.mernis.PersonCheckService;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessResult;
 import kodlamaio.hmrs.entities.concretes.Employer;
 import kodlamaio.hmrs.entities.concretes.JobSekeer;
-import kodlamaio.hmrs.entities.concretes.User;
 import kodlamaio.hmrs.entities.concretes.Verification;
 
 @Service

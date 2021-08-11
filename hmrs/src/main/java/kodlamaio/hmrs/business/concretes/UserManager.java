@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hmrs.business.abstracts.UserService;
 import kodlamaio.hmrs.core.abstracts.EmailSenderService;
 import kodlamaio.hmrs.core.abstracts.VerificationService;
+import kodlamaio.hmrs.core.dataAccess.UserDao;
+import kodlamaio.hmrs.core.entities.User;
 import kodlamaio.hmrs.core.utilities.results.DataResult;
 import kodlamaio.hmrs.core.utilities.results.ErrorResult;
 import kodlamaio.hmrs.core.utilities.results.Result;
 import kodlamaio.hmrs.core.utilities.results.SuccessDataResult;
+import kodlamaio.hmrs.core.utilities.results.SuccessResult;
 import kodlamaio.hmrs.core.utilities.validation.userValidation.UserValidationService;
-import kodlamaio.hmrs.dataAccess.abstracts.UserDao;
-import kodlamaio.hmrs.entities.concretes.User;
 
 
 @Service
@@ -22,7 +23,7 @@ public class UserManager implements UserService {
 
 	private UserDao userDao;
 	private UserValidationService userValidationService;
-	private VerificationService verificationService;
+	//private VerificationService verificationService;
 	private EmailSenderService emailSenderService;
 
 	@Autowired
@@ -31,30 +32,30 @@ public class UserManager implements UserService {
 		super();
 		this.userDao = userDao;
 		this.userValidationService = userValidationService;
-		this.verificationService = verificationService;
+		//this.verificationService = verificationService;
 		this.emailSenderService = emailSenderService;
 	}
 
 	@Override
 	public DataResult<List<User>> getAll() {
-
 		return new SuccessDataResult<List<User>>(this.userDao.findAll(), "User listed");
 	}
 
 	@Override
 	public Result add(User user) {
-		if (!userValidationService.isValid(user).isSuccess()) {
-			return new ErrorResult("Not a valid user.");
-
-//		}else if(this.userDao.findByEmail(user.getEmail())) {
-//			return new ErrorResult("The Mail adress already have");
+//		if (!userValidationService.isValid(user).isSuccess()) {
+//			return new ErrorResult("Not a valid user.");
+//
+//		}else 
+		if(this.userDao.findByEmail(user.getEmail())!=null) {
+			return new ErrorResult("The Mail adress already have");
 		}
 		
 		String token = UUID.randomUUID().toString();
 		emailSenderService.send(user.getEmail(), token);
 		System.out.println(user.getEmail() + token);
 		this.userDao.save(user);
-		return new SuccessDataResult<User>("User added"+token);
+		return new SuccessResult("User added"+token);
 		
 
 	}
